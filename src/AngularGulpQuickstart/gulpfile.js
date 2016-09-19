@@ -1,7 +1,7 @@
 ﻿var gulp = require('gulp');
 var tsc = require('gulp-typescript');
 
-gulp.task('default', ['copy:libs', 'transpile:ts', 'copy:views'], function () { });
+gulp.task('default', ['copy:libs', 'transpile:ts', 'copy:appresources'], function () { });
 
 gulp.task('copy:libs', ['copy:libs:prereq', 'copy:libs:angular']);
 
@@ -31,9 +31,10 @@ gulp.task('copy:libs:angular', function () {
         .pipe(gulp.dest('wwwroot/scripts/libs/@angular'));
 });
 
-gulp.task('copy:views', function () {
+gulp.task('copy:appresources', function () {
     return gulp.src([
-            'ngApp/**/*.html'
+            'ngApp/**/*.html',
+            'ngApp/**/*.css'
     ])
         .pipe(gulp.dest('wwwroot/scripts/app'));
 });
@@ -46,7 +47,7 @@ gulp.task('transpile:ts', function () {
         .pipe(gulp.dest('wwwroot/scripts/app'));
 });
 
-gulp.task('watch', ['copy:libs', 'transpile:ts', 'copy:views'], function () {
+gulp.task('watch', ['copy:libs', 'transpile:ts', 'copy:appresources'], function () {
     gulp.watch(['ngApp/**/*.ts'], ['transpile:ts']);
-    gulp.watch(['ngApp/**/*.html'], ['copy:views']);
+    gulp.watch(['ngApp/**/*.html', 'ngApp/**/*.css'], ['copy:appresources']);
 });
