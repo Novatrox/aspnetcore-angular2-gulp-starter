@@ -46,7 +46,7 @@ gulp.task('transpile:ts', function () {
         .pipe(gulp.dest('wwwroot/scripts/app'));
 });
 
-gulp.task('watch', ['copy:libs','transpile:ts'], function () {
+gulp.task('watch', ['copy:libs', 'transpile:ts', 'copy:views'], function () {
     gulp.watch(['ngApp/**/*.ts'], ['transpile:ts']);
-    gulp.watch(['ngApp/**/*.html'], ['copy:libs']);
+    gulp.watch(['ngApp/**/*.html'], ['copy:views']);
 });
