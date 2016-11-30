@@ -43,7 +43,7 @@ gulp.task('transpile:ts', function () {
     var tsProject = tsc.createProject('tsconfig.json');
 
     return gulp.src('ngApp/**/*.ts')
-        .pipe(tsc(tsProject))
+        .pipe(tsProject())
         .pipe(gulp.dest('wwwroot/scripts/app'));
 });
 
